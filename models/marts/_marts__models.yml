@@ -1,0 +1,8 @@
+version: 2
+models:
+  - name: employees
+    description: "The employees in the business"
+    docs:
+      show: true
+    columns:
+      - name: employee_id

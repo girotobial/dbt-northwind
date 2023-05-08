@@ -1,0 +1,10 @@
+version: 2
+models:
+  - name: stg_northwind__customers
+    config:
+      tags: ['pii']
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null

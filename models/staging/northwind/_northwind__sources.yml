@@ -1,0 +1,138 @@
+version: 2
+
+sources:
+  - name: northwind 
+    schema: public
+    tables:
+      - name: products
+        description: >
+          One record per product.
+        columns:
+          - name: product_id
+            description: Primary key of the products table
+            tests:
+              - unique
+              - not_null
+          - name: product_name
+            description: The name of the product
+            tests:
+              - not_null
+          - name: supplier_id
+            description: Foreign key for the supplier that supplies the product
+          - name: category_id
+            description: Foreign key for the categories table
+          - name: quantity_per_unit
+          - name: unit_price
+          - name: units_in_stock
+          - name: units_on_order
+          - name: reorder_level
+          - name: discontinued
+
+      - name: categories
+        description: >
+          Categories of products, one record per category
+        columns:
+          - name: category_id
+            description: Primary key of the category table
+            tests:
+              - unique
+              - not_null
+          - name: category_name
+            description: Name of the category
+            tests:
+              - unique
+              - not_null
+          - name: description
+            description: Description of the category
+
+      - name: suppliers
+        description: Supplier of products, one record per supplier
+        columns:
+          - name: supplier_id
+            description: Primary key of the suppliers table
+            tests:
+              - unique
+              - not_null
+          - name: company_name
+            description: Name of the supplier
+            tests:
+              - unique
+          - name: city
+            description: City where the supplier is located
+          - name: region
+            description: Region the supplier is located in
+          - name: country
+            description: Country supplier is located in.
+
+      - name: order_details
+        description: maps orders to products in that order
+        columns:
+          - name: order_id
+            description: Foreign key of the order
+            tests:
+              - not_null
+          - name: product_id
+            description: Foreign key of the product
+            tests:
+              - not_null
+          - name: unit_price
+            description: Unit price of the product on the order
+            tests:
+              - not_null
+          - name: quantity
+            description: Quantity of product ordered
+            tests:
+              - not_null
+          - name: discount
+            description: Any discounts applied to the products
+
+      - name: orders
+        description: A complete order, one order per row.
+        columns:
+          - name: order_id
+            description: Primary key of the order table.
+            tests:
+              - unique
+              - not_null
+          - name: customer_id
+            description: Foreign key of the customer making the order.
+            tests:
+              - not_null
+          - name: employee_id
+            description: Foreign key of the employee taking the order.
+            tests:
+              - not_null
+          - name: order_date
+            description: The date the order was taken
+            tests:
+              - not_null
+          - name: required_date
+            description: The date the order is due.
+          - name: shipped_date
+            description: The date the order was shipped.
+          
+      - name: customers
+        description: A customer making an order, one customer per row.
+        columns:
+          - name: customer_id
+            description: Primary key of the customer table
+            tests:
+              - unique
+              - not_null
+          - name: company_name
+            description: Name of the customer.
+          - name: contact_name
+            description: contact_name
+      - name: employees
+        description: An employee of northwind, one employee per row.
+        columns:
+          - name: employee_id
+            description: Primary key of the customer table
+            tests:
+              - unique
+              - not_null
+          - name: reports_to
+            description: employee the employee reports reports_to
+            tests:
+              - unique
+              - not_null
