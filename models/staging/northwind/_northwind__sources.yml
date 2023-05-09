@@ -133,6 +133,19 @@ sources:
               - not_null
           - name: reports_to
             description: employee the employee reports reports_to
+      - name: shippers
+        description: An organisation that ships orders
+        columns:
+          - name: shipper_id
+            description: Primary key of the shippers table.
             tests:
               - unique
               - not_null
+          - name: company_name
+            description: Name of the supplier
+            tests:
+              - unique
+              - not_null
+          - name: phone 
+            description: the phone number of the shipper
+

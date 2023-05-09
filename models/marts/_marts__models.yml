@@ -6,3 +6,73 @@ models:
       show: true
     columns:
       - name: employee_id
+  - name: products
+    description: "The products sold along with their suppliers"
+    docs:
+      show: true
+    columns:
+      - name: product_key
+        description: The surrogate key of the product, used to joint other tables.
+        tests:
+          - relationships:
+              to: ref('products')
+              field: product_key 
+      - name: product_id
+        description: The primary key of the product
+        tests:
+          - unique
+          - not_null
+      - name: product
+        description: The name of the product
+        tests:
+          - unique
+          - not_null
+      - name: unit_price
+        description: The price of one unit of the product
+      - name: discontinued
+        description: Whether the product is no longer sold
+      - name: supplier_id
+        description: The id of the supplier of the product
+      - name: supplier_name
+        description: The name of the supplier of the product
+      - name: supplier_city
+        description: The city the supplier is located in.
+      - name: supplier_region
+        description: The region the supplier is from.
+      - name: supplier_country
+        description: The country the supplier is from.
+      - name: category_id 
+        description: The id of the product category 
+      - name: product_category
+        description: The category of the product.
+  - name: shippers 
+    description: Companies that ship orders 
+    docs:
+      show: true
+    columns:
+      - name: shipper_id 
+        description: The primary key of the shipper 
+        tests:
+          - unique
+          - not_null
+      - name: shipper
+        description: The name of the shippper
+        tests:
+          - unique
+          - not_null
+  - name: orders 
+    description: orders made for products 
+    docs:
+      show: true
+    columns:
+      - name: order_key 
+        description: The primary key of the order
+        tests:
+          - unique
+          - not_null
+      - name: customer_key 
+        description: The key of the customer placing the order 
+        tests:
+          - relationships:
+              to: ref('customers')
+              field: customer_key 

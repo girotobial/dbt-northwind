@@ -1,3 +1,10 @@
+{{
+config({
+    "post-hook": [
+      "{{ primary_key(this, 'employee_key' )}}",
+    ],
+    })
+}}
 with
 
 employees as (
@@ -11,6 +18,11 @@ managers as (
 
 employees_with_managers as (
     select
+        {{
+            dbt_utils.generate_surrogate_key([
+                'e.employee_id',
+                ])
+        }} as employee_key,
         e.employee_id,
         e.full_name,
         e.title,

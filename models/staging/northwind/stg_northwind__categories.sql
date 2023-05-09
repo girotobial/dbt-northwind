@@ -10,7 +10,7 @@ renamed as (
         category_id,
 
         --strings
-        category_name as category,
+        category_name as product_category,
         description
         picture
 

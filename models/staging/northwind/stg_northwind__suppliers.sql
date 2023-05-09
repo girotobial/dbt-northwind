@@ -11,14 +11,14 @@ renamed as (
         supplier_id,
 
         -- strings
-        company_name as supplier,
+        company_name as supplier_name,
         contact_name,
         contact_title,
         address,
-        city,
-        region,
-        postal_code,
-        country,
+        city as supplier_city,
+        region as supplier_region,
+        postal_code as supplier_postal_code,
+        country as supplier_country,
         phone,
         fax,
         homepage

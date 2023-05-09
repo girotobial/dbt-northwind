@@ -10,6 +10,7 @@ recalculated as (
         order_id,
         customer_id,
         employee_id,
+        ship_via as shipper_id,
 
         -- dates
         order_date,
@@ -29,7 +30,6 @@ recalculated as (
         ship_country,
 
         -- numeric
-        ship_via,
         freight
     from source
 ),
