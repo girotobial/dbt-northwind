@@ -6,6 +6,7 @@ config({
       "{{ foreign_key(this, 'employee_key', ref('employees'), 'employee_key')}}",
       "{{ foreign_key(this, 'product_key', ref('products'), 'product_key')}}",
       "{{ foreign_key(this, 'shipper_key', ref('shippers'), 'shipper_key')}}",
+      "{{ foreign_key(this, 'order_details_key', ref('order_details'), 'order_details_key')}}",
     ],
     })
 }}
@@ -71,6 +72,10 @@ employees as (
     select * from {{ref('employees')}}
 ),
 
+order_details_dim as (
+    select * from {{ref('order_details')}}
+),
+
 final as (
     select
         -- surrogate keys
@@ -79,6 +84,7 @@ final as (
         shippers.shipper_key,
         customers.customer_key,
         employees.employee_key,
+        order_details_dim.order_details_key,
         
         -- alternate keys
         oj.order_id,
@@ -105,6 +111,7 @@ final as (
     left join shippers on shippers.shipper_id = oj.shipper_id
     left join customers on customers.customer_id = oj.customer_id
     left join employees on employees.employee_id = oj.employee_id
+    left join order_details_dim on order_details_dim.order_id = oj.order_id
 )
 
 select * from final 

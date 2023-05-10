@@ -16,6 +16,20 @@ services:
       - ./files:/files
     networks:
       - db
+  metabase:
+    container_name: metabase
+    image: metabase/metabase:latest
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_HOST: db
+      MB_DB_NAME: metabase
+      MB_DB_PORT: 5432
+      MB_DB_USER: postgres
+      MB_DB_PASS: postgres
+    ports: 
+      - 3000:3000
+    networks:
+      - db
 
 networks:
   db:

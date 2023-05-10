@@ -30,7 +30,8 @@ recalculated as (
         ship_country,
 
         -- numeric
-        freight
+        freight::float8::numeric::money
+
     from source
 ),
 
